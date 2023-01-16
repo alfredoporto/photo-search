@@ -22,7 +22,6 @@ class MainFragment : VerticalGridSupportFragment() {
         //title = "Trending no"
 
 
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

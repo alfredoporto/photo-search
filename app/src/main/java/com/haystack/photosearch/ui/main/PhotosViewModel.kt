@@ -33,7 +33,7 @@ class PhotosViewModel : ViewModel() {
     }
 
     fun searchPhoto(searchQuery: String): List<Image> {
-        var result : List<Image> = emptyList()
+        var result: List<Image> = emptyList()
 
         viewModelScope.launch {
             result = WebClient.service.fetchImages(searchQuery).data.photos.map { it.toDomain() }

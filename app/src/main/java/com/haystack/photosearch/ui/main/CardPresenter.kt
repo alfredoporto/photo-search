@@ -10,7 +10,7 @@ import com.haystack.photosearch.R
 import com.haystack.photosearch.domain.Image
 import com.haystack.photosearch.ui.common.loadUrl
 
-class CardPresenter: Presenter() {
+class CardPresenter : Presenter() {
     override fun onCreateViewHolder(parent: ViewGroup): ViewHolder {
         val cardView = ImageCardView(parent.context).apply {
             isFocusable = true

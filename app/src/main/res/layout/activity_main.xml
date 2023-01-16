@@ -2,7 +2,6 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     tools:context=".ui.main.MainActivity"
@@ -13,7 +12,8 @@
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <SearchView
             android:id="@+id/leftSearch"
@@ -26,9 +26,8 @@
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:background="#00FFFFFF"
-            android:gravity="center_vertical|right"
+            android:gravity="center_vertical|end"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -42,20 +41,19 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="0dp"
                 android:textStyle="bold"
-                android:text="PHOTO SEARCH"
+                android:text="@string/photo_search"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/headerDescription"
-                android:layout_below="@id/headerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="powered by flickr"
+                android:text="@string/powered_by_flickr"
                 android:textColor="#4B4B4B"
                 android:textSize="15sp" />
 
@@ -67,13 +65,13 @@
         android:id="@+id/search_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:text="Search Results for Trending"
+        android:gravity="start"
+        android:text="@string/search_results_for_trending"
         android:textColor="#FFFFFF"
         android:textSize="17sp"
         android:layout_marginBottom="10dp" />
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/vertical_grid_fragment"
         android:name="com.haystack.photosearch.ui.main.MainFragment"
         android:layout_width="fill_parent"

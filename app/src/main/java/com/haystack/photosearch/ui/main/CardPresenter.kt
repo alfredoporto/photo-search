@@ -3,10 +3,8 @@ package com.haystack.photosearch.ui.main
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
 import androidx.leanback.widget.ImageCardView
 import androidx.leanback.widget.Presenter
-import com.haystack.photosearch.R
 import com.haystack.photosearch.domain.Image
 import com.haystack.photosearch.ui.common.loadUrl
 

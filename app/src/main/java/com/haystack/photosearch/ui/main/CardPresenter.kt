@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.leanback.widget.ImageCardView
 import androidx.leanback.widget.Presenter
-import com.haystack.photosearch.domain.Image
+import com.haystack.photosearch.domain.Photo
 import com.haystack.photosearch.ui.common.loadUrl
 
 class CardPresenter : Presenter() {
@@ -21,14 +21,14 @@ class CardPresenter : Presenter() {
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, item: Any) {
-        val image = item as Image
+        val photo = item as Photo
 
-        Log.d("CardPresenter", "Load image : $image")
+        Log.d("CardPresenter", "Load image : $photo")
 
         with(viewHolder.view as ImageCardView) {
-            titleText = image.title
-            contentText = image.id
-            mainImageView.loadUrl(image.url)
+            titleText = photo.title
+            contentText = photo.id
+            mainImageView.loadUrl(photo.url)
         }
     }
 

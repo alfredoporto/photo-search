@@ -6,12 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.haystack.photosearch.data.server.WebClient
 import com.haystack.photosearch.data.server.model.toDomain
-import com.haystack.photosearch.domain.Image
+import com.haystack.photosearch.domain.Photo
 import kotlinx.coroutines.launch
 
 class PhotosViewModel : ViewModel() {
-    private val mutableData = MutableLiveData<List<Image>>()
-    val selectedImages: LiveData<List<Image>> get() = mutableData
+    private val mutableData = MutableLiveData<List<Photo>>()
+    val selectedImages: LiveData<List<Photo>> get() = mutableData
 
     init {
         viewModelScope.launch {
@@ -27,12 +27,12 @@ class PhotosViewModel : ViewModel() {
         }
     }
 
-    private fun setImages(images: List<Image>) {
-        mutableData.value = images
+    private fun setImages(photos: List<Photo>) {
+        mutableData.value = photos
     }
 
-    private fun searchPhoto(searchQuery: String): List<Image> {
-        var result: List<Image> = emptyList()
+    private fun searchPhoto(searchQuery: String): List<Photo> {
+        var result: List<Photo> = emptyList()
 
         viewModelScope.launch {
             result = WebClient.service.fetchImages(searchQuery).data.photos.map { it.toDomain() }
@@ -40,7 +40,7 @@ class PhotosViewModel : ViewModel() {
         return result
     }
 
-    private suspend fun defaultPhotos(): List<Image> {
+    private suspend fun defaultPhotos(): List<Photo> {
         return WebClient.service.fetchImages("trending").data.photos.map { it.toDomain() }
     }
 }

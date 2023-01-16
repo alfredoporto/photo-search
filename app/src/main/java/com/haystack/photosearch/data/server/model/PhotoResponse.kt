@@ -2,7 +2,7 @@ package com.haystack.photosearch.data.server.model
 
 
 import com.google.gson.annotations.SerializedName
-import com.haystack.photosearch.domain.Image
+import com.haystack.photosearch.domain.Photo
 
 data class PhotoResponse(
     @SerializedName("farm")
@@ -19,10 +19,10 @@ data class PhotoResponse(
     val title: String
 )
 
-fun PhotoResponse.toDomain(): Image {
+fun PhotoResponse.toDomain(): Photo {
     val url = "https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg"
 
-    return Image(
+    return Photo(
         id,
         title,
         url

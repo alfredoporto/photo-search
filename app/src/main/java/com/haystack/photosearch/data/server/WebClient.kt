@@ -16,10 +16,9 @@ object WebClient {
         level = HttpLoggingInterceptor.Level.BODY
         OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT_MS, TimeUnit.SECONDS)
-            .addInterceptor(this).build()
+            .addInterceptor(this)
+            .build()
     }
-
-
 
     private val builder = Retrofit.Builder()
         .baseUrl(BASE_URL)

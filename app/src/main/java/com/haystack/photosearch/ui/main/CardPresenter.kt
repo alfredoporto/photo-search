@@ -14,9 +14,9 @@ class CardPresenter: Presenter() {
     override fun onCreateViewHolder(parent: ViewGroup): ViewHolder {
         val cardView = ImageCardView(parent.context).apply {
             isFocusable = true
-            isFocusableInTouchMode = true
+            //isFocusableInTouchMode = true
             setMainImageScaleType(ImageView.ScaleType.CENTER_CROP)
-            setMainImageDimensions(500, 300)
+            setMainImageDimensions(450, 300)
         }
 
         return ViewHolder(cardView)

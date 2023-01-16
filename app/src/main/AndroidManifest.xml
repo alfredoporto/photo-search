@@ -27,7 +27,7 @@
 
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:resource="@xml/searchable" />
         </activity>
     </application>
 

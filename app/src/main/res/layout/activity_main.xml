@@ -1,84 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.main.MainActivity"
     android:background="#000000"
-    android:orientation="horizontal">
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <SearchView
+            android:id="@+id/leftSearch"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:orientation="horizontal">
+            android:layout_weight="3"
+            android:searchIcon="@drawable/lb_ic_in_app_search" />
 
-            <SearchView
-                android:id="@+id/leftSearch"
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#00FFFFFF"
+            android:gravity="center_vertical|right"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_weight="3"
-                android:focusable="true"
-                android:searchIcon="@drawable/lb_ic_in_app_search"
-                />
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:text="PHOTO SEARCH"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
-            <LinearLayout
-                android:id="@+id/header"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/headerDescription"
+                android:layout_below="@id/headerTitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:background="#00FFFFFF"
-                android:gravity="center_vertical|right"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-
-                <TextView
-                    android:id="@+id/headerTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:textStyle="bold"
-                    android:text="PHOTO SEARCH"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/headerDescription"
-                    android:layout_below="@id/headerTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="powered by flickr"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="powered by flickr"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/search_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="Search Results for"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
-
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/search_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="Search Results for Trending"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
     <fragment
         android:id="@+id/vertical_grid_fragment"
@@ -87,4 +79,7 @@
         android:layout_height="fill_parent"
         android:gravity="center" />
 
-</RelativeLayout>
+</LinearLayout>
+
+
+

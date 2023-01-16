@@ -19,9 +19,6 @@ class MainFragment : VerticalGridSupportFragment() {
         super.onCreate(savedInstanceState)
         gridPresenter = VerticalGridPresenter()
         gridPresenter.numberOfColumns = 3
-        //title = "Trending no"
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,31 +27,16 @@ class MainFragment : VerticalGridSupportFragment() {
         adapter = ArrayObjectAdapter(CardPresenter())
 
         viewLifecycleOwner.lifecycleScope.launch {
-
+            Log.d("onViewCreated", "first time")
             viewModel.selectedImages.value?.map {
                 (adapter as ArrayObjectAdapter).add(it)
             }
-
         }
 
         viewModel.selectedImages.observe(viewLifecycleOwner) { photos ->
             Log.d("MainFragment-Observer", "data changed")
-            lifecycleScope.launch {
-                photos.map { (adapter as ArrayObjectAdapter).add(it) }
-            }
+            photos.map { (adapter as ArrayObjectAdapter).add(it) }
         }
-
-        /*
-        viewLifecycleOwner.lifecycleScope.launch {
-            Log.d("onViewCreated", "Alfredo")
-            val searchResponse = WebClient.service.fetchImages("trending")
-            searchResponse.data.photos.map {
-                (adapter as ArrayObjectAdapter).add(it.toDomain())
-            }
-
-        }
-
-         */
     }
 }
 

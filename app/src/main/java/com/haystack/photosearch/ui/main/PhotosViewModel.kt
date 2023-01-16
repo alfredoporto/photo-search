@@ -10,29 +10,28 @@ import com.haystack.photosearch.domain.Image
 import kotlinx.coroutines.launch
 
 class PhotosViewModel : ViewModel() {
-    suspend fun fetchImages(searchTerm: String): List<Image> {
-        if (searchTerm.isBlank()) {
-            return defaultPhotos()
-        }
-
-        val searchResponse = WebClient.service.fetchImages(searchTerm)
-        return searchResponse.data.photos.map { it.toDomain() }
-    }
-
     private val mutableData = MutableLiveData<List<Image>>()
     val selectedImages: LiveData<List<Image>> get() = mutableData
 
-    fun selectImages(images: List<Image>) {
-        mutableData.value = images
-    }
-
     init {
         viewModelScope.launch {
-            selectImages(defaultPhotos())
+            setImages(defaultPhotos())
         }
     }
 
-    fun searchPhoto(searchQuery: String): List<Image> {
+    suspend fun fetchImages(searchTerm: String) {
+        if (searchTerm.isBlank()) {
+            setImages(defaultPhotos())
+        } else {
+            setImages(searchPhoto(searchTerm))
+        }
+    }
+
+    private fun setImages(images: List<Image>) {
+        mutableData.value = images
+    }
+
+    private fun searchPhoto(searchQuery: String): List<Image> {
         var result: List<Image> = emptyList()
 
         viewModelScope.launch {

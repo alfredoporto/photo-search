@@ -1,6 +1,8 @@
 package com.haystack.photosearch.ui.main
 
 import android.util.Log
+import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.leanback.widget.ImageCardView
@@ -29,6 +31,9 @@ class CardPresenter : Presenter() {
             titleText = photo.title
             contentText = photo.id
             mainImageView.loadUrl(photo.url)
+            mainImageView.setOnClickListener {
+                Log.d("NEW-FEATURE", "photo id: $photo.id")
+            }
         }
     }
 
@@ -38,5 +43,4 @@ class CardPresenter : Presenter() {
             mainImage = null
         }
     }
-
 }

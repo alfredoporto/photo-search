@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.haystack.photosearch.data.server.WebClient
-import com.haystack.photosearch.data.server.model.toDomain
+import com.haystack.photosearch.data.repository.FlickrRepository
 import com.haystack.photosearch.domain.Photo
 import kotlinx.coroutines.launch
 
@@ -35,12 +34,12 @@ class PhotosViewModel : ViewModel() {
         var result: List<Photo> = emptyList()
 
         viewModelScope.launch {
-            result = WebClient.service.fetchImages(searchQuery).data.photos.map { it.toDomain() }
+            result = FlickrRepository().fetchPhotos(searchQuery)
         }
         return result
     }
 
     private suspend fun defaultPhotos(): List<Photo> {
-        return WebClient.service.fetchImages("trending").data.photos.map { it.toDomain() }
+        return FlickrRepository().fetchPhotos("trending")
     }
 }

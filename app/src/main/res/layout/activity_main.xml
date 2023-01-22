@@ -1,14 +1,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
-    tools:context=".ui.main.MainActivity"
+    tools:context=".ui.MainActivity"
     android:background="#000000"
     android:layout_width="match_parent"
     android:orientation="vertical">
 
     <fragment
         android:id="@+id/two_fragment"
-        android:name="com.haystack.photosearch.ui.main.PhotoGalleryFragment"
+        android:name="com.haystack.photosearch.ui.gallery.PhotoGalleryFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"

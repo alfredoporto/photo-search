@@ -1,4 +1,4 @@
-package com.haystack.photosearch.ui.main
+package com.haystack.photosearch.ui.gallery
 
 import android.os.Bundle
 import android.util.Log

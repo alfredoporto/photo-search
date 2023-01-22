@@ -1,4 +1,4 @@
-package com.haystack.photosearch.ui.main
+package com.haystack.photosearch.ui
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity

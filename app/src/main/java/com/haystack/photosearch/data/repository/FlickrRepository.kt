@@ -6,7 +6,12 @@ import com.haystack.photosearch.domain.Photo
 
 class FlickrRepository : PhotosRepository {
     private val flickrApi by lazy { WebClient.service }
-    override suspend fun fetchPhotos(query: String): List<Photo> {
-        return flickrApi.fetchImages(query).data.photos.map { it.toDomain() }
+    override suspend fun searchPhotos(query: String): List<Photo> {
+        return flickrApi.searchPhotos(query).data.photos.map { it.toDomain() }
     }
+
+    override suspend fun fetchPhotos(): List<Photo> {
+        return flickrApi.fetchPhotos().data.photos.map { it.toDomain() }
+    }
+
 }

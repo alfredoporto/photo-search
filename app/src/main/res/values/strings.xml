@@ -3,4 +3,6 @@
     <string name="search_results_for_trending">Search Results for Trending</string>
     <string name="powered_by_flickr">powered by flickr</string>
     <string name="photo_search">PHOTO SEARCH</string>
+    <string name="search">Search</string>
+    <string name="clear_search">Clear Search</string>
 </resources>

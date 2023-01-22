@@ -1,5 +1,6 @@
 package com.haystack.photosearch.ui.main
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ class PhotoViewHolder(private val binding: ListPhotoGalleryBinding) : RecyclerVi
         binding.photoImageView.loadUrl(galleryPhoto.url)
     }
 }
+private const val TAG = "PhotoListAdapter"
 
 class PhotoListAdapter(
     private val galleryPhotos: List<Photo>
@@ -29,6 +31,9 @@ class PhotoListAdapter(
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val item = galleryPhotos[position]
         holder.bind(item)
+        holder.itemView.setOnClickListener {
+            Log.d(TAG, "Item id: ${item.id}")
+        }
     }
 
     override fun getItemCount() = galleryPhotos.size

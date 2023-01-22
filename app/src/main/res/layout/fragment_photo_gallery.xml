@@ -1,10 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/photo_grid"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:itemCount="9"
-    tools:listitem="@layout/list_photo_gallery">
 
-</androidx.recyclerview.widget.RecyclerView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_height="wrap_content"
+    android:background="#000000"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/leftSearch"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="3"
+            android:searchIcon="@drawable/lb_ic_in_app_search" />
+
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:gravity="center_vertical|end"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="0dp"
+                android:textStyle="bold"
+                android:text="@string/photo_search"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/headerDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/powered_by_flickr"
+                android:textColor="#4B4B4B"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/search_query"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="@string/search_results_for_trending"
+        android:textColor="#FFFFFF"
+        android:textSize="17sp"
+        android:layout_marginBottom="10dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/photo_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        tools:itemCount="9"
+        tools:listitem="@layout/list_photo_gallery">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

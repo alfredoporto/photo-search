@@ -2,11 +2,13 @@ package com.haystack.photosearch.ui.main
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.leanback.app.VerticalGridSupportFragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -17,7 +19,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "PhotoGalleryFragment"
 
-class PhotoGalleryFragment : VerticalGridSupportFragment() {
+class PhotoGalleryFragment : Fragment() {
 
     private val photoGalleryViewModel: PhotoGalleryViewModel by viewModels()
     private var _binding: FragmentPhotoGalleryBinding? = null
@@ -28,7 +30,7 @@ class PhotoGalleryFragment : VerticalGridSupportFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
+
     }
 
     override fun onCreateView(
@@ -36,53 +38,25 @@ class PhotoGalleryFragment : VerticalGridSupportFragment() {
     ): View {
         _binding = FragmentPhotoGalleryBinding.inflate(inflater, container, false)
         binding.photoGrid.layoutManager = GridLayoutManager(context, 3)
-        return binding.root
-    }
 
-    /*
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.fragment_menu, menu)
-
-        val searchItem: MenuItem = menu.findItem(R.id.menu_item_search)
-        val searchView = searchItem.actionView as? SearchView
-
-        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        val searchView = binding.root.findViewById<SearchView>(R.id.leftSearch)
+        val searchText = binding.root.findViewById<TextView>(R.id.search_query)
+        searchView?.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Log.d(TAG, "QueryTextSubmit: $query")
+                Log.d(TAG,"onQueryTextSubmit: $query")
                 photoGalleryViewModel.setQuery(query ?: "")
+                searchText.text = "Search Results for $query"
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                Log.d(TAG, "QueryTextChange: $newText")
+                Log.d(TAG,"onQueryTextChange: $newText")
                 return false
             }
         })
+
+        return binding.root
     }
-
-     */
-
-    /*
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        adapter = ArrayObjectAdapter(CardPresenter())
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            Log.d(TAG, "first time")
-            viewModel.selectedImages.value?.map {
-                (adapter as ArrayObjectAdapter).add(it)
-            }
-        }
-
-        viewModel.selectedImages.observe(viewLifecycleOwner) { photos ->
-            Log.d(TAG, "data changed")
-            photos.map { (adapter as ArrayObjectAdapter).add(it) }
-        }
-    }
-
-     */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

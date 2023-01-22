@@ -1,8 +1,6 @@
 package com.haystack.photosearch.ui.main
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.haystack.photosearch.data.repository.FlickrRepository
@@ -24,9 +22,7 @@ class PhotoGalleryViewModel : ViewModel() {
     init {
         viewModelScope.launch {
             try {
-                val photos = photoRepository.fetchPhotos()
-                _galleryPhotos.value = photos
-                //setImages(defaultPhotos())
+                _galleryPhotos.value = photoRepository.fetchPhotos()
             } catch (ex: Exception) {
                 Log.e(TAG, "Failed to fetch gallery photos", ex)
             }
@@ -41,35 +37,5 @@ class PhotoGalleryViewModel : ViewModel() {
     private suspend fun fetchGalleryPhotos(query: String) = when (query.isNotEmpty()) {
         true -> photoRepository.searchPhotos(query)
         else -> photoRepository.fetchPhotos()
-    }
-
-    //gaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-    private val mutableData = MutableLiveData<List<Photo>>()
-    val selectedImages: LiveData<List<Photo>> get() = mutableData
-
-    suspend fun fetchImages(searchTerm: String) {
-        if (searchTerm.isBlank()) {
-            setImages(defaultPhotos())
-        } else {
-            setImages(searchPhoto(searchTerm))
-        }
-    }
-
-    private fun setImages(photos: List<Photo>) {
-        mutableData.value = photos
-    }
-
-    private fun searchPhoto(searchQuery: String): List<Photo> {
-        var result: List<Photo> = emptyList()
-
-        viewModelScope.launch {
-            result = FlickrRepository().searchPhotos(searchQuery)
-        }
-        return result
-    }
-
-    private suspend fun defaultPhotos(): List<Photo> {
-        return FlickrRepository().searchPhotos("trending")
     }
 }

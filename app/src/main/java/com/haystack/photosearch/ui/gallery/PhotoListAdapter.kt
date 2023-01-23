@@ -1,12 +1,15 @@
 package com.haystack.photosearch.ui.gallery
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.haystack.photosearch.databinding.ListPhotoGalleryBinding
 import com.haystack.photosearch.domain.Photo
 import com.haystack.photosearch.ui.common.loadUrl
+import com.haystack.photosearch.ui.detail.PhotoDetailActivity
 
 class PhotoViewHolder(private val binding: ListPhotoGalleryBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(galleryPhoto: Photo) {
@@ -33,6 +36,12 @@ class PhotoListAdapter(
         holder.bind(item)
         holder.itemView.setOnClickListener {
             Log.d(TAG, "Item id: ${item.id}")
+            val context = holder.itemView.context
+            val intent = Intent(context, PhotoDetailActivity::class.java).apply {
+                putExtra("TITLE",item.title)
+                putExtra("URL", item.url)
+            }
+            context.startActivity(intent)
         }
     }
 

@@ -3,6 +3,6 @@
     android:label="@string/app_name"
     android:voiceSearchMode="showVoiceSearchButton|launchRecognizer"
     android:focusable="true"
-    android:searchIcon="@drawable/lb_ic_in_app_search"
+    android:searchIcon="@android:drawable/ic_menu_search"
     >
 </searchable>

@@ -5,4 +5,8 @@
     <string name="photo_search">PHOTO SEARCH</string>
     <string name="search">Search</string>
     <string name="clear_search">Clear Search</string>
+    <string name="loading_photos">Loading photos...</string>
+    <string name="search_results_for_query">Search Results for %1$s</string>
+    <string name="no_results_for_query">No results for %1$s</string>
+    <string name="unable_to_load_photos">Unable to load photos. Check the Flickr API key and network connection.</string>
 </resources>

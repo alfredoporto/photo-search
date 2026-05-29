@@ -4,7 +4,6 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.haystack.photosearch.databinding.ListPhotoGalleryBinding
 import com.haystack.photosearch.domain.Photo
@@ -18,9 +17,14 @@ class PhotoViewHolder(private val binding: ListPhotoGalleryBinding) : RecyclerVi
 }
 private const val TAG = "PhotoListAdapter"
 
-class PhotoListAdapter(
-    private val galleryPhotos: List<Photo>
-) : RecyclerView.Adapter<PhotoViewHolder>() {
+class PhotoListAdapter : RecyclerView.Adapter<PhotoViewHolder>() {
+    private val galleryPhotos = mutableListOf<Photo>()
+
+    fun submitPhotos(photos: List<Photo>) {
+        galleryPhotos.clear()
+        galleryPhotos.addAll(photos)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
